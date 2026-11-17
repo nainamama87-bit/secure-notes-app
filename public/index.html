@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A private notes app built with Node.js, Express and MongoDB." />
+  <title>Secure Notes</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/">✦ Secure Notes</a>
+      <span class="tagline">Your thoughts, in one private place</span>
+    </header>
+
+    <section id="auth-view" class="panel auth-panel">
+      <div class="intro">
+        <p class="eyebrow">PERSONAL WORKSPACE</p>
+        <h1 id="auth-title">Welcome back</h1>
+        <p class="muted">Sign in to access your private notes.</p>
+      </div>
+      <form id="auth-form">
+        <div id="name-field" class="field hidden">
+          <label for="name">Full name</label>
+          <input id="name" name="name" maxlength="60" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" minlength="8" required autocomplete="current-password" />
+        </div>
+        <button class="primary full" type="submit" id="auth-submit">Sign in</button>
+      </form>
+      <p class="switch-line"><span id="switch-text">New here?</span> <button id="switch-mode" class="text-button" type="button">Create an account</button></p>
+      <p id="auth-message" class="message" role="status"></p>
+    </section>
+
+    <section id="app-view" class="hidden">
+      <div class="welcome-row">
+        <div><p class="eyebrow">YOUR WORKSPACE</p><h1>My notes</h1><p class="muted" id="welcome-text"></p></div>
+        <button id="logout" class="secondary" type="button">Log out</button>
+      </div>
+      <section class="panel editor">
+        <h2 id="editor-heading">Create a note</h2>
+        <form id="note-form">
+          <input type="hidden" id="note-id" />
+          <div class="field"><label for="note-title">Title</label><input id="note-title" maxlength="100" placeholder="e.g. Project ideas" required /></div>
+          <div class="field"><label for="note-content">Your note</label><textarea id="note-content" rows="4" maxlength="10000" placeholder="Write something worth remembering..." required></textarea></div>
+          <div class="actions"><button class="primary" type="submit" id="save-note">Save note</button><button class="secondary hidden" type="button" id="cancel-edit">Cancel</button></div>
+        </form>
+        <p id="note-message" class="message" role="status"></p>
+      </section>
+      <div class="notes-heading"><h2>Saved notes</h2><span id="note-count" class="count">0 notes</span></div>
+      <div id="notes-list" class="notes-grid"></div>
+      <p id="empty-state" class="empty hidden">No notes yet. Create your first note above.</p>
+    </section>
+    <footer>Built with Node.js · Express · MongoDB</footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>
